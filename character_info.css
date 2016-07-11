@@ -1,0 +1,57 @@
+.characterInfo {
+  margin: 10px;
+  border: 1px solid black;
+  width: 1000px;
+  background-color: #FAF5F5;
+}
+
+.characterInfo .characterName {
+  margin: 10px;
+}
+
+.characterInfo .characterName > span {
+  font-weight: 600;
+}
+
+.characterInfo .characterOrigin {
+  margin: 10px;
+}
+
+.characterInfo .characterOrigin .originLine {
+  display: inline-block;
+  width: 180px;
+}
+
+.characterInfo .characterOrigin span {
+  font-weight: 600;
+}
+
+.characterInfo .experience {
+  margin: 10px;
+}
+
+.characterInfo .experience .overspent {
+  color: red;
+}
+
+.characterInfo .experience .experienceLine {
+  display: inline-block;
+  width: 140px;
+}
+
+.characterInfo .experience .experienceLabel {
+  font-weight: 600;
+}
+
+.characterInfo .experience .experienceTotal > span {
+  margin-left: 1px;
+  margin-right: 1px;
+}
+
+.characterInfo .saveButton {
+  cursor: pointer;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}

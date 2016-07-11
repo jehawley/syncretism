@@ -1,0 +1,25 @@
+{
+  "headers": {
+    "h1": {"name": "headerA", "purchased": false, "cost": 2, "group": "god", "skills": {
+      "s1": {
+        "name": "skill1",
+        "description": "This skill does all the things",
+        "cost": {"constant": [0, 9]}
+      }
+    }},
+    "h2": {"name": "headerB", "purchased": true, "cost": 3, "group": "god", "skills": {
+      "s2": {
+        "name": "skill2",
+        "description": "This skill does a thing.",
+        "cost": {"perEvent": [0, 1, 2, 3, 4, 5]}
+      },
+      "s3": {
+        "name": "skill3",
+        "description": "This skill does a different thing.",
+        "cost": {"perEvent": [0, 3, 5, 7], "perBattle": [0, 2, 4, 6, 8]}, "purchased": {"perBattle": 3}
+      }
+    }}
+  },
+  "characterData": {"characterName": "Noodle God", "characterRace": "Okonia", "characterCulture": "Trilith",
+                    "totalCP": "40", "totalXP": "5"}
+}

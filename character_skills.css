@@ -1,0 +1,175 @@
+/* old ++++++++++++++++++++ */
+
+.characterSkills .expander {
+  cursor: pointer;
+  float: left;
+}
+
+.characterSkills .headerHeader .prereq.satisfied {
+  text-decoration: line-through;
+  color: black;
+}
+
+.characterSkills .headerHeader .prereq.unsatisfied {
+  color: red;
+}
+
+.characterSkills .header .buyHeaderButton {
+  cursor: pointer;
+}
+
+.characterSkills .expander {
+  width: 15px;
+  height: 15px;
+  margin-left 5px;
+  margin-right 5px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* end old +++++++++++++++++ */
+
+.characterSkills {
+  margin: 10px;
+  background-color: #FAF5F5;
+  border: 1px solid black;
+  width: 1000px;
+}
+
+/* TODO(jhawley): Box shadow? */
+.characterSkills .headerGroup {
+  margin: 10px;
+}
+
+.characterSkills .headerGroup .headerGroupHeader > span {
+  font-weight: bold;
+  text-decoration: underline;
+  font-size: 1.1em;
+}
+
+.characterSkills .headerGroup .headerList.open {
+  margin-left: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right: 10px;
+}
+
+.characterSkills .headerGroup .headerList.closed {
+  height: 0px;
+  overflow: hidden;
+}
+
+.characterSkills .headerGroup .headerList .header {
+  margin-top: 5px;
+  margin-botton: 5px;
+}
+
+.characterSkills .headerGroup .headerList .header .headerHeader {
+  font-weight: 600;
+}
+
+/* TODO(jhawley): Fix this when I fix the expander */
+.characterSkills .headerGroup .headerList .header .headerHeader .prerequisites {
+  margin-left: 15px;
+}
+
+.characterSkills .headerGroup .headerList .header .headerSkills.closed {
+  height: 0px;
+  overflow: hidden;
+}
+
+.characterSkills .headerGroup .headerList .header .headerSkills .skill {
+  margin: 10px;
+}
+
+.characterSkills .headerGroup .headerList .header .headerSkills .skill .skillHeader .headerLine {
+  display: inline-block;
+}
+
+.characterSkills .headerGroup .headerList .header .headerSkills .skill .skillHeader .skillName {
+  font-weight: 500;
+  width: 250px;
+}
+
+.characterSkills .headerGroup .headerList .header .headerSkills .skill .skillHeader .skillPurchase {
+  margin-left: 10px;
+}
+
+.characterSkills .headerGroup .headerList .header .headerSkills .skill .skillHeader .skillPurchase .purchaseType {
+  width: 90px;
+}
+
+.characterSkills .headerGroup .headerList .header .headerSkills .skill .skillHeader .skillPurchase .skillLevels {
+  width: 100px;
+}
+
+.characterSkills .headerGroup .headerList .header .headerSkills .skill .skillDescription.closed {
+  height: 0px;
+  overflow: hidden;
+} 
+
+.characterSkills .headerGroup .headerList .header .headerSkills .skill .skillDescription.open {
+  margin: 5px;
+} 
+
+/* Khemet skill group */
+.characterSkills .headerGroup.Incarnation {
+  background-color: #C8E9F2;
+  border: 3px solid #00008B; 
+}
+
+.characterSkills .headerGroup.Incarnation .headerList .header {
+  background-color: #D9F1Ff;
+  border: 2px solid #00008B;
+}
+
+.characterSkills .headerGroup.Incarnation .headerList .header .headerSkills .skill {
+  background-color: #FFD0D5;
+  border: 1px solid #8A0707;
+}
+
+.characterSkills .headerGroup.Incarnation .headerList .header .headerSkills .skill .skillDescription.open {
+  background-color: #FFEAF0;
+} 
+
+/* Grove skill group */
+.characterSkills .headerGroup.Sysadmin {
+  background-color: #99DE99;
+  border: 3px solid #117B11;
+}
+
+.characterSkills .headerGroup.Sysadmin .headerList .header {
+  background-color: #AAEDAA;
+  border: 2px solid #117B11;
+}
+
+.characterSkills .headerGroup.Sysadmin .headerList .header .headerSkills .skill {
+  background-color: #F5DEB3;
+  border: 1px solid #8B4513;
+}
+
+.characterSkills .headerGroup.Sysadmin .headerList .header .headerSkills .skill .skillDescription.open {
+  background-color: #FFF8DC;
+} 
+
+/* Trilith skill group */
+  /*background-color: #8692AA;*/
+.characterSkills .headerGroup.SoulForged {
+  background-color: #B6B6C3;
+  border: 3px solid #434B4D;
+}
+
+.characterSkills .headerGroup.SoulForged .headerList .header {
+  background-color: #C4C4D1;
+  border: 2px solid #434B4D;
+}
+
+.characterSkills .headerGroup.SoulForged .headerList .header .headerSkills .skill {
+  background-color: #FFF580;
+  border: 2px solid #FFD700;
+}
+
+.characterSkills .headerGroup.SoulForged .headerList .header .headerSkills .skill .skillDescription.open {
+  background-color: #FFFFC0;
+} 
+
