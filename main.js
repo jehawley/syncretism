@@ -23,7 +23,8 @@ app.get('/json', (req, res) => {
 
 app.use(express.static('pages'));
 app.use(express.static('style'));
-app.use(express.static('components/compiled'));
+app.use(express.static('scripts'));
+app.use(express.static('scripts/components/compiled'));
 
 var server = https.createServer(options, app)
     .listen(port);

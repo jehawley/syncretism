@@ -1,0 +1,1 @@
+babel --plugins transform-react-jsx scripts/components/src/ --out-dir scripts/components/compiled/

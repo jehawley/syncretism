@@ -8,35 +8,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.js"></script>
 
-    <script src="Expander.js"></script>
-    <script src="SkillBuySection.js"></script>
-    <script src="Skill.js"></script>
-    <script src="BuyHeaderButton.js"></script>
-    <script src="HeaderHeader.js"></script>
-    <script src="Header.js"></script>
-    <script src="HeaderGroup.js"></script>
-    <script src="CharacterSkills.js"></script>
-    <script src="SaveButton.js"></script>
-    <script src="CharacterInfo.js"></script>
-    <script src="CharacterGenerator.js"></script>
-    <script src="App.js"></script>
+    <script data-main="init" src="lib/require.js"></script>
   </head>
   <body>
     <div id="content"></div>
-    <script>
-      (function () {
-        var xhr = new XMLHttpRequest();
-        var propsJson; 
-        xhr.open('GET', '/json');
-//        xhr.overrideMimeType('application/json');
-        xhr.onload = function() {
-          if (xhr.status === 200) {
-            propsJson = JSON.parse(xhr.responseText) || {};
-            window.propsJson = propsJson;
-            window.initApp();
-          }
-        }
-        xhr.send();
-      })();
-    </script>
   </body>
