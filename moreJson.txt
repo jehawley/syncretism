@@ -1,6 +1,6 @@
 {
   "headers": {
-    "h_k1": {"name": "Incarnation of Bast", "purchased": false, "cost": 2, "group": "Incarnation", "skills": {
+    "h_k1": {"name": "Incarnation of Bast", "cost": 2, "group": "Incarnation", "skills": {
       "s1_k1": {
         "name": "Challenge Them",
         "description": "Challenge, 1 Reset, melee",
@@ -22,7 +22,7 @@
         "cost": {"constant": [0, 10]}
       }
     }},
-    "h_k2": {"name": "Incarnation of Sekhmet", "purchased": false, "cost": 2, "group": "Incarnation", "skills": {
+    "h_k2": {"name": "Incarnation of Sekhmet", "cost": 2, "group": "Incarnation", "skills": {
       "s2_k1": {
         "name": "Stop Getting Hurt!",
         "description": "Cantrip 'With Divinity, 1 Shielding' (6 Resets, casting)",
@@ -49,7 +49,7 @@
         "cost": {"constant": [0, 8]}
       }
     }},
-    "h_k3": {"name": "Incarnation of Aset", "purchased": false, "cost": 2, "group": "Incarnation", "skills": {
+    "h_k3": {"name": "Incarnation of Aset", "cost": 2, "group": "Incarnation", "skills": {
       "s3_k1": {
         "name": "I Win",
         "description": "'With Victory, Lock' (5 resets, casting)",
@@ -71,7 +71,7 @@
         "cost": {"constant": [0, 8]}
       }
     }},
-    "h_t1": {"name": "Chisel I", "purchased": false, "cost": 2, "group": "Soul Forged", "skills": {
+    "h_t1": {"name": "Chisel I", "cost": 2, "group": "Soul Forged", "skills": {
       "s1_t1": {
         "name": "Shard Storm",
         "description": "You may choose to Break your armor at any time. If you do so, you may immediately swing for 'X damage' (1 Reset, melee) where X was your remaining armor points before breaking. ",
@@ -93,14 +93,14 @@
         "cost": {"perEvent": [0, 4, 8, 12], "perBattle": [0, 1, 3, 6, 10]}
       }
     }},
-    "h_t2": {"name": "Chisel II", "purchased": false, "cost": 2, "group": "Soul Forged", "prerequisites": ["h_t1"], "skills": {
+    "h_t2": {"name": "Chisel II", "cost": 2, "group": "Soul Forged", "prerequisites": ["h_t1"], "skills": {
       "s2_t1": {
          "name": "A More Perfect Instrument",
          "description": "'10 Damage' (6 Resets, melee)",
           "cost": {"perEvent": [0, 3, 6, 9, 12, 15, 18, 2122], "perBattle": [0, 3, 5, 8, 10, 12, 14, 16, 18, 20]}
        }
     }},
-    "h_g1": {"name": "Protector", "purchased": false, "cost": 2, "group": "Sysadmin", "skills": {
+    "h_g1": {"name": "Protector", "cost": 2, "group": "Sysadmin", "skills": {
       "s1_g1": {
         "name": "Virtual Memory",
         "description": "When your armor becomes Broken, you may choose to call 'With Network, 2 Shielding to Self'",
@@ -123,6 +123,8 @@
       }
     }}
   },
-  "characterData": {"characterName": "Noodle God", "characterRace": "Okonia", "characterCulture": "Trilith",
-                    "totalCP": "40", "totalXP": "5"}
+  "characterData": {"name": "Noodle God", "race": "Okonia", "culture": "Trilith",
+                    "totalCP": "40", "totalXP": "5"},
+  "purchasedHeaders": [],
+  "purchasedSkills": {}
 }

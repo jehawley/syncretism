@@ -17,7 +17,15 @@ define(['components/compiled/HeaderHeader', 'components/compiled/Skill', 'compon
       var skillElements = Object.keys(skills).map(function(skillId) {
         var skill = skills[skillId];
         return (
-            <Skill name={skill.name} description={skill.description} cost={skill.cost} purchased={skill.purchased} canBuy={skill.canBuy} updatePurchased={skill.updatePurchased} key={skillId}/>
+          <Skill
+            name={skill.name}
+            description={skill.description}
+            cost={skill.cost}
+            purchased={skill.purchased}
+            canBuy={skill.canBuy}
+            updatePurchased={skill.updatePurchased}
+            key={skillId}
+          />
         );
       })
       var headerClasses = "header";
@@ -28,7 +36,15 @@ define(['components/compiled/HeaderHeader', 'components/compiled/Skill', 'compon
         <div className={headerClasses}>
           <div className="headerHeader">
             <Expander open={this.state.open} onClick={this.toggleOpen} />
-            <HeaderHeader name={this.props.name} cost={this.props.cost} prerequisites={this.props.prerequisites} purchased={this.props.purchased} canSell={this.props.canSell} canBuy={this.props.canBuy} updatePurchased={this.props.updatePurchased} />
+            <HeaderHeader
+              name={this.props.name}
+              cost={this.props.cost}
+              prerequisites={this.props.prerequisites}
+              purchased={this.props.purchased}
+              canSell={this.props.canSell}
+              canBuy={this.props.canBuy}
+              updatePurchased={this.props.updatePurchased}
+            />
           </div>
           <div className={headerSkillsClasses}>
             {skillElements}

@@ -4,12 +4,12 @@ define(['components/compiled/SaveButton'], function(SaveButton) {
       this.props.updateCharacterName(event.target.value);
     },
   
-    updateCharacterRace: function(event) {
-      this.props.updateCharacterRace(event.target.value);
+    updateRace: function(event) {
+      this.props.updateRace(event.target.value);
     },
   
-    updateCharacterCulture: function(event) {
-      this.props.updateCharacterCulture(event.target.value);
+    updateCulture: function(event) {
+      this.props.updateCulture(event.target.value);
     },
   
     render: function() {
@@ -29,7 +29,7 @@ define(['components/compiled/SaveButton'], function(SaveButton) {
           <div className="characterOrigin">
             <div className="originLine">
               <span>Race: </span>
-              <select value={this.props.characterRace} onChange={this.updateCharacterRace}>
+              <select value={this.props.race} onChange={this.updateRace}>
                 <option value="Enia">Enia</option>
                 <option value="Okonia">Okonia</option>
                 <option value="Mangaro">Mangaro</option>
@@ -37,7 +37,7 @@ define(['components/compiled/SaveButton'], function(SaveButton) {
             </div>
             <div className="originLine">
               <span>Culture: </span>
-              <select value={this.props.characterCulture} onChange={this.updateCharacterCulture}>
+              <select value={this.props.culture} onChange={this.updateCulture}>
                 <option value="Khemet">Khemet</option>
                 <option value="Grove">Grove</option>
                 <option value="Trilith">Trilith</option>

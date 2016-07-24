@@ -15,7 +15,15 @@ define(['components/compiled/BuyHeaderButton'], function(BuyHeaderButton) {
         <div>
           <div>
             <span>{this.props.name} </span>
-            <span><BuyHeaderButton cost={this.props.cost} purchased={this.props.purchased} canSell={this.props.canSell} canBuy={this.props.canBuy} updatePurchased={this.props.updatePurchased} /></span>
+            <span>
+              <BuyHeaderButton
+                cost={this.props.cost}
+                purchased={this.props.purchased}
+                canSell={this.props.canSell}
+                canBuy={this.props.canBuy}
+                updatePurchased={this.props.updatePurchased}
+              />
+            </span>
           </div>
           <div className="prerequisites">
             {totalPrereqs > 0 ? <span>Prerequisites: </span> : null}{prereqElements}

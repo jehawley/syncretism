@@ -68,7 +68,6 @@
   font-weight: 600;
 }
 
-/* TODO(jhawley): Fix this when I fix the expander */
 .characterSkills .headerGroup .headerList .header .headerHeader .prerequisites {
   margin-left: 15px;
 }
@@ -100,7 +99,7 @@
 }
 
 .characterSkills .headerGroup .headerList .header .headerSkills .skill .skillHeader .skillPurchase .skillLevels {
-  width: 100px;
+  width: 140px;
 }
 
 .characterSkills .headerGroup .headerList .header .headerSkills .skill .skillDescription.closed {
@@ -153,7 +152,6 @@
 } 
 
 /* Trilith skill group */
-  /*background-color: #8692AA;*/
 .characterSkills .headerGroup.SoulForged {
   background-color: #B6B6C3;
   border: 3px solid #434B4D;

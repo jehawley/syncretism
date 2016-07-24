@@ -23,7 +23,18 @@ define(['components/compiled/Header', 'components/compiled/Expander'], function(
       var headerElements = Object.keys(headers).map(function(headerId) {
         var header = headers[headerId];
         return (
-          <Header name={header.name} cost={header.cost} description={header.description} prerequisites={header.prerequisites} purchased={header.purchased || false} canBuy={header.canBuy || false} canSell={header.canSell || false} updatePurchased={header.updatePurchased} skills={header.skills} key={headerId} />
+          <Header
+            name={header.name}
+            cost={header.cost}
+            description={header.description}
+            prerequisites={header.prerequisites}
+            purchased={header.purchased || false}
+            canBuy={header.canBuy || false}
+            canSell={header.canSell || false}
+            updatePurchased={header.updatePurchased}
+            skills={header.skills}
+            key={headerId}
+          />
         );
       });
   

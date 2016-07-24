@@ -1,39 +1,25 @@
 define(['components/compiled/CharacterInfo', 'components/compiled/CharacterSkills'], function(CharacterInfo, CharacterSkills) {
   var CharacterGenerator = React.createClass({
+    propTypes: {
+      headers: React.PropTypes.object,
+      characterData: React.PropTypes.object,
+      // TODO(jhawley): Data types
+      purchasedHeaders: React.PropTypes.arrayOf(React.PropTypes.string),
+      purchasedSkills: React.PropTypes.objectOf(React.PropTypes.string)
+    },
+
     getInitialState: function() {
-      // TODO(jhawley): Change initial header purchased state to work off a separate "character db state" object
-      var purchasedHeaders = {};
-      for (var headerId in this.props.headers) {
-        header = this.props.headers[headerId];
-        if (header.purchased) {
-          purchasedHeaders[headerId] = true;
-        }
-      }
-  
-      var purchasedSkills = {};
-      for (var headerId in this.props.headers) {
-        var header = this.props.headers[headerId];
-        for (var skillId in header.skills) {
-          var skill = header.skills[skillId];
-          if (skill.purchased) {
-            var purchasedSkillsForHeader = purchasedSkills[headerId];
-            if (!purchasedSkillsForHeader) {
-              var skillPurchased = {};
-              skillPurchased[skillId] = skill.purchased;
-              purchasedSkills[headerId] = skillPurchased;
-            } else {
-              purchasedSkillsForHeader[skillId] = skill.purchased;
-            }
-          }
-        }
-      }
+      var purchasedHeaders = this.props.purchasedHeaders.reduce(function(headers, header) {
+        headers[header] = true;
+        return headers;
+      }, {});
   
       return ({
-        characterName: this.props.characterData.characterName,
-        characterRace: this.props.characterData.characterRace,
-        characterCulture: this.props.characterData.characterCulture,
+        characterName: this.props.characterData.name,
+        race: this.props.characterData.race,
+        culture: this.props.characterData.culture,
         purchasedHeaders: purchasedHeaders,
-        purchasedSkills: purchasedSkills
+        purchasedSkills: this.props.purchasedSkills
       });
     },
   
@@ -79,54 +65,51 @@ define(['components/compiled/CharacterInfo', 'components/compiled/CharacterSkill
             delete purchasedHeaders[headerId];
           }
   
-          return {"purchasedHeaders": purchasedHeaders};
+          return {'purchasedHeaders': purchasedHeaders};
         });
       }.bind(this);
     },
   
-    generateBuySkillCallback: function(headerId, skillId, purchaseType) {
-      // TODO(jhawley): This isn't quite right, because the skills purchased state is sparse
-      return function(newPurchased) {
+    // TODO(jhawley): Can I clean this up at all?
+    // TODO(jhawley): Broken?
+    generateBuySkillCallback: function(skillId, purchaseType) {
+      return function(newLevel) {
         this.setState(function (previousState, currentProps) {
-          var purchasedSkills = {};
-  
-          for (var hId in previousState.purchasedSkills) {
-            if (hId !== headerId) {
-              purchasedSkills[hId] = previousState.purchasedSkills[hId];
+          var newPurchasedSkills = Object.keys(previousState.purchasedSkills).reduce(function(skills, oldSkillId) {
+            skills[oldSkillId] = previousState.purchasedSkills[oldSkillId]
+            return skills;
+          }, {});
+
+          if (newLevel > 0) {
+            newPurchasedSkills[skillId] = Object.keys(newPurchasedSkills[skillId] || {}).reduce(function(types, type) {
+              types[type] = newPurchasedSkills[skillId][type];
+              return types;
+            }, {});
+            newPurchasedSkills[skillId][purchaseType] = newLevel;
+          } else {
+            var purchasedSkill = newPurchasedSkills[skillId];
+            if (purchasedSkill) {
+              if (purchasedSkill[purchaseType]) {
+                delete purchasedSkill[purchaseType];
+              }
             }
           }
-          
-          // TODO(jhawley): Optimize to reduce the unnecessary hash lookups by constructing the object then putting it in the right place.
-          purchasedSkills[headerId] = {};
-          var previousHeaderPurchasedSkills = previousState.purchasedSkills[headerId] || {};
-          for (var sId in previousHeaderPurchasedSkills) {
-            if (sId !== skillId) {
-              purchasedSkills[headerId][sId] = previousHeaderPurchasedSkills[sId];
-            }
-          }
-  
-          purchasedSkills[headerId][skillId] = {};
-          var previousPurchasedSkill = previousHeaderPurchasedSkills[skillId];
-          for (var type in previousPurchasedSkill) {
-            purchasedSkills[headerId][skillId][type] = previousPurchasedSkill[type];
-          }
-          purchasedSkills[headerId][skillId][purchaseType] = newPurchased;
-  
-          return {"purchasedSkills": purchasedSkills};
+
+          return {'purchasedSkills': newPurchasedSkills};
         });
       }.bind(this);
-    }, 
+    },
   
     updateCharacterName: function(name) {
       this.setState({"characterName": name});
     },
   
-    updateCharacterRace: function(race) {
-      this.setState({"characterRace": race});
+    updateRace: function(race) {
+      this.setState({"race": race});
     },
   
-    updateCharacterCulture: function(culture) {
-      this.setState({"characterCulture": culture});
+    updateCulture: function(culture) {
+      this.setState({"culture": culture});
     },
   
     saveCharacter: function() {
@@ -135,32 +118,34 @@ define(['components/compiled/CharacterInfo', 'components/compiled/CharacterSkill
     },
   
     computeSpentXP: function() {
-      var totalCost = 0;
-      for (var headerId in this.state.purchasedHeaders) {
-        totalCost += this.props.headers[headerId].cost;
-      }
-      return totalCost;
+      return Object.keys(this.state.purchasedHeaders).reduce(function(totalCost, headerId) {
+        var header = this.props.headers[headerId];
+        return header ? totalCost + header.cost : 0;
+      }.bind(this), 0);
     },
-  
-    computeSpentCP: function() {
-      var totalCost = 0;
-      for (var headerId in this.state.purchasedSkills) {
-        var headerPurchasedSkills = this.state.purchasedSkills[headerId];
-        for (var skillId in headerPurchasedSkills) {
-          var skillPurchased = headerPurchasedSkills[skillId];
-          var skillCosts = this.props.headers[headerId].skills[skillId].cost;
-          if (skillCosts.constant && skillPurchased.constant) {
-            totalCost += skillCosts.constant[skillPurchased.constant];
-          }
-          if (skillCosts.perEvent && skillPurchased.perEvent) {
-            totalCost += skillCosts.perEvent[skillPurchased.perEvent];
-          }
-          if (skillCosts.perBattle && skillPurchased.perBattle) {
-            totalCost += skillCosts.perBattle[skillPurchased.perBattle];
+
+    findSkillInHeader: function(searchSkillId) {
+      for (var headerId in this.props.headers) {
+        for (var skillId in this.props.headers[headerId].skills) {
+          if (skillId === searchSkillId) {
+            return this.props.headers[headerId].skills[skillId];
           }
         }
       }
-      return totalCost;
+    },
+  
+    computeSpentCP: function() {
+      return Object.keys(this.state.purchasedSkills).reduce(function(totalCost, skillId) {
+        var purchasedSkill = this.state.purchasedSkills[skillId];
+        var skill = this.findSkillInHeader(skillId);
+        if (skill) {
+          return totalCost + Object.keys(purchasedSkill).reduce(function(totalSkillCost, type) {
+            return totalSkillCost + skill.cost[type][purchasedSkill[type]];
+          }.bind(this), 0);
+        } else {
+          return 0;
+        }
+      }.bind(this), 0);
     },
   
     computeHeaderData: function() {
@@ -168,7 +153,6 @@ define(['components/compiled/CharacterInfo', 'components/compiled/CharacterSkill
   
       for (var headerId in this.props.headers) {
         var header = this.props.headers[headerId];
-        var headerSkillsPurchased = this.state.purchasedSkills[headerId];
   
         var skillData = {};
         for (var skillId in header.skills) {
@@ -178,12 +162,12 @@ define(['components/compiled/CharacterInfo', 'components/compiled/CharacterSkill
             "name": skill.name,
             "cost": skill.cost,
             "description": skill.description,
-            "purchased": headerSkillsPurchased ? headerSkillsPurchased[skillId] : {},
+            "purchased": this.state.purchasedSkills[skillId] || {},
             "canBuy": this.state.purchasedHeaders[headerId] ? true : false,
             "updatePurchased": {
-              "constant": this.generateBuySkillCallback(headerId, skillId, "constant"),
-              "perEvent": this.generateBuySkillCallback(headerId, skillId, "perEvent"),
-              "perBattle": this.generateBuySkillCallback(headerId, skillId, "perBattle")
+              "constant": this.generateBuySkillCallback(skillId, "constant"),
+              "perEvent": this.generateBuySkillCallback(skillId, "perEvent"),
+              "perBattle": this.generateBuySkillCallback(skillId, "perBattle")
             }
           }
         }
@@ -206,12 +190,21 @@ define(['components/compiled/CharacterInfo', 'components/compiled/CharacterSkill
     },
   
     render: function() {
-      var spentXP = this.computeSpentXP();
-      var spentCP = this.computeSpentCP();
-  
       return (
         <div>
-          <CharacterInfo characterName={this.state.characterName} characterRace={this.state.characterRace} characterCulture={this.state.culture} spentXP={spentXP} totalXP={this.props.characterData.totalXP} spentCP={spentCP} totalCP={this.props.characterData.totalCP} updateCharacterName={this.updateCharacterName} updateCharacterRace={this.updateCharacterRace} updateCharacterCulture={this.updateCharacterCulture} saveCharacter={this.saveCharacter} />
+          <CharacterInfo
+            characterName={this.state.characterName}
+            race={this.state.race}
+            culture={this.state.culture}
+            spentXP={this.computeSpentXP()}
+            totalXP={this.props.characterData.totalXP}
+            spentCP={this.computeSpentCP()}
+            totalCP={this.props.characterData.totalCP}
+            updateCharacterName={this.updateCharacterName}
+            updateRace={this.updateRace}
+            updateCulture={this.updateCulture}
+            saveCharacter={this.saveCharacter}
+          />
   
           <CharacterSkills headers={this.computeHeaderData()} />
         </div>
