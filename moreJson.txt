@@ -1,122 +1,122 @@
 {
   "headers": {
-    "h_k1": {"name": "Incarnation of Bast", "cost": 2, "group": "Incarnation", "skills": {
-      "s1_k1": {
+    "1": {"name": "Incarnation of Bast", "cost": 2, "group": "Incarnation", "skills": {
+      "1": {
         "name": "Challenge Them",
         "description": "Challenge, 1 Reset, melee",
         "cost": {"perEvent": [0, 3, 6, 9, 12], "perBattle": [0, 3, 6, 9, 12]}
       },
-      "s1_k2": {
+      "2": {
         "name": "Slash",
         "description": "2 Damage, melee",
         "cost": {"perEvent": [0, 3, 6, 9, 12], "perBattle": [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]}
       },
-      "s1_k3": {
+      "3": {
         "name": "Die Network Die",
         "description": "With Voice, Challenge to Network; 1 Reset, melee",
         "cost": {"perEvent": [0, 5, 10, 15]}
       },
-      "s1_k4": {
+      "4": {
         "name": "Defend the Hearth",
         "description": "If currently engaging 2 or more Challenged targets, you may add 2 to the value of all your called damage swings",
         "cost": {"constant": [0, 10]}
       }
     }},
-    "h_k2": {"name": "Incarnation of Sekhmet", "cost": 2, "group": "Incarnation", "skills": {
-      "s2_k1": {
+    "2": {"name": "Incarnation of Sekhmet", "cost": 2, "group": "Incarnation", "skills": {
+      "5": {
         "name": "Stop Getting Hurt!",
         "description": "Cantrip 'With Divinity, 1 Shielding' (6 Resets, casting)",
         "cost": {"constant": [0, 8]}
       },
-      "s2_k2": {
+      "6": {
         "name": "Don't Break It Again!",
         "description": "Cantrip 'Remove Break Limb' (10 Resets, casting)",
         "cost": {"constant": [0, 10]}
       },
-      "s2_k3": {
+      "7": {
         "name": "Get Up!",
         "description": "'With Violence, Rise' (4 Resets, casting)",
         "cost": {"perEvent": [0, 3, 6, 9, 12], "perBattle": [0, 3, 6, 9, 12]}
       },
-      "s2_k4": {
+      "8": {
         "name": "Berserk Healer",
         "description": "You may deliver healing with a weapon and perform weapon resets instead of casting resets.",
         "cost": {"constant": [0, 5]}
       },
-      "s2_k5": {
+      "9": {
         "name": "Stop Losing!",
         "description": "You may take a Trap effect. As long as you do not break free of the trap, you may swing your healing with melee weapons as 'With Disease, 2 Damage' (1 Reset, melee) and Rise as 'With Fury, 5 Damage' (3 Resets, melee)",
         "cost": {"constant": [0, 8]}
       }
     }},
-    "h_k3": {"name": "Incarnation of Aset", "cost": 2, "group": "Incarnation", "skills": {
-      "s3_k1": {
+    "3": {"name": "Incarnation of Aset", "cost": 2, "group": "Incarnation", "skills": {
+      "10": {
         "name": "I Win",
         "description": "'With Victory, Lock' (5 resets, casting)",
         "cost": {"perEvent": [0, 10, 20, 30]}
       },
-      "s3_k2": {
+      "11": {
         "name": "My Game, My Rules",
         "description": "'With Illusion, 3 Stagger' (2 Resets, casting)",
         "cost": {"perEvent": [0, 3, 6, 9, 12], "perBattle": [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]}
       },
-      "s3_k3": {
+      "12": {
         "name": "You Dare Approach Me?",
         "description": "'With Illusion, 3 Knockback' (1 Reset, casting)", 
         "cost": {"perEvent": [0, 3, 6, 9, 12], "perBattle": [0, 3, 6, 9, 12]}
       },
-      "s3_k4": {
+      "13": {
         "name": "True Name",
         "description": "Once per battle, perform 5 Resets to throw a packet for 'Bestow Named Trait'. For the rest of the battle, you may call 'With Voice, X to Named' where X is any spell you can cast. Perform double the number of resets to cast spells in this way. If you miss with the 'Bestow Named Trait', you may perform the resets and throw it again until you hit.",
         "cost": {"constant": [0, 8]}
       }
     }},
-    "h_t1": {"name": "Chisel I", "cost": 2, "group": "Soul Forged", "skills": {
-      "s1_t1": {
+    "4": {"name": "Chisel I", "cost": 2, "group": "Soul Forged", "skills": {
+      "14": {
         "name": "Shard Storm",
         "description": "You may choose to Break your armor at any time. If you do so, you may immediately swing for 'X damage' (1 Reset, melee) where X was your remaining armor points before breaking. ",
         "cost": {"constant": [0, 3]}
       },
-      "s1_t2": {
+      "15": {
         "name": "Gouge",
         "description": "'2 Damage' (1 Resets, melee)",
         "cost": {"perEvent": [0, 3, 6, 9, 12], "perBattle": [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]}
       },
-      "s1_t3": {
+      "16": {
         "name": "Precision Cut",
         "description": "'5 Damage' (3 Resets, melee)",
         "cost": {"perEvent": [0, 3, 6, 9, 12, 15, 18, 21], "perBattle": [0, 3, 5, 8, 10, 12, 14, 16, 18, 20]}
       },
-      "s1_t4": {
+      "17": {
         "name": "Blunt Instrument",
         "description": "'Break' (3 Resets, melee)",
         "cost": {"perEvent": [0, 4, 8, 12], "perBattle": [0, 1, 3, 6, 10]}
       }
     }},
-    "h_t2": {"name": "Chisel II", "cost": 2, "group": "Soul Forged", "prerequisites": ["h_t1"], "skills": {
-      "s2_t1": {
+    "5": {"name": "Chisel II", "cost": 2, "group": "Soul Forged", "prerequisites": ["h_t1"], "skills": {
+      "18": {
          "name": "A More Perfect Instrument",
          "description": "'10 Damage' (6 Resets, melee)",
           "cost": {"perEvent": [0, 3, 6, 9, 12, 15, 18, 2122], "perBattle": [0, 3, 5, 8, 10, 12, 14, 16, 18, 20]}
        }
     }},
-    "h_g1": {"name": "Protector", "cost": 2, "group": "Sysadmin", "skills": {
-      "s1_g1": {
+    "6": {"name": "Protector", "cost": 2, "group": "Sysadmin", "skills": {
+      "19": {
         "name": "Virtual Memory",
         "description": "When your armor becomes Broken, you may choose to call 'With Network, 2 Shielding to Self'",
         "cost": {"constant": [0, 3]}
       },
-      "s1_g2": {
+      "20": {
         "name": "Reboot",
         "description": "Cantrip 'Repair Armor to Self' (10 Resets, casting)",
         "cost": {"constant": [0, 5]} 
       },
-      "s1_g3": {
+      "21": {
         "name": "Linear Backoff",
         "description": "'With Technology, 3 Knockback' (1 Reset)",
         "cost": {"perEvent": [0, 3, 6, 9, 12], "perBattle": [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]}
       },
-      "s1_g4": {
+      "22": {
         "name": "Kernel Panic",
         "description": "Stomp your foot and call 'With Voice, 3 Stagger. With Voice, 2 Shielding to Network'.",
         "cost": {"perEvent": [0, 5, 10, 15]}

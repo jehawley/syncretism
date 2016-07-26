@@ -1,11 +1,11 @@
 define(['components/compiled/CharacterInfo', 'components/compiled/CharacterSkills'], function(CharacterInfo, CharacterSkills) {
   var CharacterGenerator = React.createClass({
     propTypes: {
+      characterId: React.PropTypes.number,
       headers: React.PropTypes.object,
       characterData: React.PropTypes.object,
-      // TODO(jhawley): Data types
-      purchasedHeaders: React.PropTypes.arrayOf(React.PropTypes.string),
-      purchasedSkills: React.PropTypes.objectOf(React.PropTypes.string)
+      purchasedHeaders: React.PropTypes.arrayOf(React.PropTypes.number),
+      purchasedSkills: React.PropTypes.object
     },
 
     getInitialState: function() {
@@ -113,8 +113,29 @@ define(['components/compiled/CharacterInfo', 'components/compiled/CharacterSkill
     },
   
     saveCharacter: function() {
-      // TODO(jhawley): Talk to the server yo
-      console.log('Totally real save-ty');
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', '/saveCharacter');
+      xhr.setRequestHeader('Content-type', 'application/json');
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          console.log('Saved!\n');
+        } else {
+          console.log('Not Saved\n');
+        }
+      }
+
+      var requestParams = {
+        characterId: this.props.characterId,
+        characterInfo: {
+          name: this.state.characterName,
+          race: this.state.race,
+          culture: this.state.culture
+        },
+        purchasedHeaders: Object.keys(this.state.purchasedHeaders),
+        purchasedSkills: this.state.purchasedSkills
+      };
+
+      xhr.send(JSON.stringify(requestParams));
     },
   
     computeSpentXP: function() {

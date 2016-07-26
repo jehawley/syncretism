@@ -1,8 +1,6 @@
-UPDATE character_info ci
+UPDATE character_info
 SET
-  ci.name = $1,
-  ci.race = $2,
-  ci.culture = $3
-FROM upsert_data ud
-WHERE ci.character_id = ud.$4
-  AND ci.player_id = ud.$5
+  name = $1,
+  race = $2,
+  culture = $3
+WHERE id = $4

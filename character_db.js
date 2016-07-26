@@ -57,11 +57,11 @@ var characterDb = {
     });
   },
 
-  saveCharacterInfo: function(db, name, race, culture, character_id, player_id) {
+  saveCharacterInfo: function(db, name, race, culture, character_id) {
     return db.none({
       name: 'saveCharacterInfo',
       text: character_queries.saveCharacterInfo,
-      values: [name, race, culture, character_id, player_id]
+      values: [name, race, culture, character_id]
     });
   },
 

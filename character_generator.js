@@ -8,7 +8,7 @@ var db = pgp({
 });
 
 var expandCost = function(costParams) {
-  return costParams.split(';').unshift(0);
+  return [0].concat(costParams.split(';')).map(c => parseInt(c, 10));
 }
 
 // TODO(jhawley): Helper functions?
@@ -18,6 +18,13 @@ var characterGenerator = {
     return db.task(t => {
       return character_db.loadCharacterInfo(t, character_id)
       .then(characterData => {
+        var processedCharacterData = {
+          name: characterData.name,
+          race: characterData.race,
+          culture: characterData.culture,
+          totalCP: characterData.total_cp,
+          totalXP: characterData.total_xp
+        };
         return character_db.loadHeaders(t, character_id)
         .then(headerData => {
           var headers = headerData.reduce((headerCollection, header) => {
@@ -32,7 +39,8 @@ var characterGenerator = {
           }, {});
 
           return {
-            characterData: characterData,
+            characterId: parseInt(character_id, 10),
+            characterData: processedCharacterData,
             headers: headers,
             purchasedHeaders: [],
             purchasedSkills: {}
@@ -59,11 +67,12 @@ var characterGenerator = {
               skillCollection[skill.id] = {
                 name: skill.name,
                 description: skill.description,
-                cost: {}
+                cost: {},
+                header_id: skill.header_id
               };
             }
 
-            skillCollection[skill.id][skill.cost_type] = expandCost(skill.params);
+            skillCollection[skill.id].cost[skill.cost_type] = expandCost(skill.cost_params);
 
             return skillCollection;
           }, {});
@@ -90,10 +99,10 @@ var characterGenerator = {
         return character_db.loadPurchasedSkills(t, character_id)
         .then(purchasedSkillData => {
           var purchasedSkills = purchasedSkillData.reduce((skillCollection, skill) => {
-            if (!skillCollection[skill.id]) {
-              skillCollection[skill.id] = {};
+            if (!skillCollection[skill.skill_id]) {
+              skillCollection[skill.skill_id] = {};
             }
-            skillCollection[skill.id][skill.type] = skill.level;
+            skillCollection[skill.skill_id][skill.type] = skill.level;
             return skillCollection;
           }, {});
 
@@ -113,39 +122,40 @@ var characterGenerator = {
     });    
   },
 
-  saveGeneratorState: function(player_id, character_info, purchased_headers, purchased_skills) {
+  saveGeneratorState: function(character_id, character_info, purchased_headers, purchased_skills) {
     return db.tx(tx => {
       return character_db.saveCharacterInfo(tx,
                                             character_info.name, 
                                             character_info.race,
                                             character_info.culture,
-                                            character_info.character_id,
-                                            player_id)
+                                            character_id)
       .then(result => {
-        return character_db.deletePurchasedHeaders(tx, character_info.character_id);
+        return character_db.deletePurchasedHeaders(tx, character_id);
       })
       .then(result => {
         return Promise.all(purchased_headers.map(header_id => {
-          return character_db.addPurchasedHeder(tx, header_id, character_info.character_id);
+          return character_db.addPurchasedHeader(tx, header_id, character_id);
         }));
       })
       .then(result => {
-        return character_db.deletePurchasedSkills(tx, character_info.character_id);
+        return character_db.deletePurchasedSkills(tx, character_id);
       })
       .then(result => {
         return Promise.all(Object.keys(purchased_skills).map(skill_id => {
-          var skill = purchased_skill[skill_id];
+          var skill = purchased_skills[skill_id];
           return Promise.all(Object.keys(skill).map(type => {
-            return character_db.addPurchasedSkill(tx, skill_id, character_info.character_id, type, level);
+            var level = skill[type];
+            return character_db.addPurchasedSkill(tx, skill_id, character_id, type, level);
           }));
         }));
       });
     })
     .then(data => {
-      // TODO(jhawley): Success, somehow?
+      return true;
     })
     .catch(error => {
       // TODO(jhawley): Errors. Catch them.      
+      console.log(error);
     });
   }
 };

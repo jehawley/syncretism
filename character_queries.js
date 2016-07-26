@@ -20,7 +20,7 @@ var sqlQueries = {
   saveCharacterInfo: load('saveCharacterInfo.sql'),
   addPurchasedHeader: load('addPurchasedHeader.sql'),
   deletePurchasedHeaders: load('deletePurchasedHeaders.sql'),
-  addPurchasedSkill: load('upsertPurchasedSkill.sql'),
+  addPurchasedSkill: load('addPurchasedSkill.sql'),
   deletePurchasedSkills: load('deletePurchasedSkills.sql')
 };
 
