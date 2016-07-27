@@ -11,6 +11,8 @@ function load(file) {
 
 var sqlQueries = {
   loadCharactersForPlayer: load('loadCharactersForPlayer.sql'),
+  createCharacter: load('createCharacter.sql'),
+  insertDefaultNewExperience: load('insertDefaultNewExperience.sql'),
   loadCharacterInfo: load('loadCharacterInfo.sql'),
   loadPurchasedHeaders: load('loadPurchasedHeaders.sql'),
   loadPurchasedSkills: load('loadPurchasedSkills.sql'),

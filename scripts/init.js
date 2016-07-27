@@ -9,6 +9,6 @@ require(['components/compiled/App'], function(App) {
       window.propsJson = propsJson;
       App(propsJson);
     }
-  }
+  };
   xhr.send();
 });

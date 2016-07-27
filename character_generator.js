@@ -14,6 +14,50 @@ var expandCost = function(costParams) {
 // TODO(jhawley): Helper functions?
 // TODO(jhawley): Immutable-js to avoid parameter mutation?
 var characterGenerator = {
+  loadCharacterList: function(player_id) {
+    return character_db.loadCharactersForPlayer(db, player_id)
+    .then(charactersData => {
+      var characters = charactersData.map(character => ({
+        character_id: character.id,
+        name: character.name,
+        race: character.race,
+        culture: character.culture,
+        totalCP: character.total_cp,
+        totalXP: character.total_xp
+      }));
+      // TODO(jhawley): Not exactly what I want - probably get rid of player_id
+      return {
+        player_id: player_id,
+        characters: characters
+      };
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  },
+
+  createNewCharacter: function(player_id, character_info) {
+    return db.tx(tx => {
+      return character_db.createCharacter(tx, player_id, character_info.name, character_info.race, character_info.culture)
+      .then(characterId => {
+        // TODO(jhawley): what is the actual type of "characterId" here?
+        return character_db.insertDefaultNewExperience(tx, characterId, 'CP', 30)
+        .then(result => {
+          return characterId;
+        });
+      })
+      .then(characterId => {
+        return character_db.insertDefaultNewExperience(tx, characterId, 'XP', 5)
+      })
+    })
+    .then(data => {
+      return true;
+    })
+    .catch(error => {
+      console.log(error);
+    });
+  },
+
   loadInitialGeneratorState: function(character_id) {
     return db.task(t => {
       return character_db.loadCharacterInfo(t, character_id)

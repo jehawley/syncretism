@@ -5,7 +5,23 @@ var characterDb = {
     return db.any({
       name: 'loadCharactersForPlayer',
       text: character_queries.loadCharactersForPlayer,
-      values: [player_id]
+      values: [player_id, player_id]
+    });
+  },
+
+  createCharacter: function(db, player_id, name, race, culture) {
+    return db.one({
+      name: 'createCharacter',
+      text: character_queries.createCharacter,
+      values: [player_id, name, race, culture]
+    });
+  },
+
+  insertDefaultNewExperience: function(db, character_id, type, amount) {
+    return db.none({
+      name: 'insertDefaultNewExperience',
+      text: character_queries.insertDefaultNewExperience,
+      values: [character_id, type, amount]
     });
   },
 
