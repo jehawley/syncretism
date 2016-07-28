@@ -1,4 +1,4 @@
-define(['components/compiled/BuyHeaderButton'], function(BuyHeaderButton) {
+define(['generator/BuyHeaderButton'], function(BuyHeaderButton) {
   var HeaderHeader = React.createClass({
     render: function() {
       var totalPrereqs = Object.keys(this.props.prerequisites || {}).length;

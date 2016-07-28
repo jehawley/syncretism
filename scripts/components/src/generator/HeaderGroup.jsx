@@ -1,4 +1,4 @@
-define(['components/compiled/Header', 'components/compiled/Expander'], function(Header, Expander) {
+define(['generator/Header', 'generator/Expander'], function(Header, Expander) {
   var HeaderGroup = React.createClass({
     getInitialState: function() {
       return ({

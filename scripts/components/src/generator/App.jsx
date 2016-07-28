@@ -1,4 +1,4 @@
-define(['components/compiled/CharacterGenerator'], function(CharacterGenerator) {
+define(['generator/CharacterGenerator'], function(CharacterGenerator) {
   return function(propsJson) {
     ReactDOM.render(<CharacterGenerator
                       characterId={propsJson.characterId}

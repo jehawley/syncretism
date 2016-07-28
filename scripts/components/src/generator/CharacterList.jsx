@@ -1,4 +1,4 @@
-define(['components/compiled/CharacterRow', 'components/compiled/NewCharacterRow'], function(CharacterRow, NewCharacterRow) {
+define(['generator/CharacterRow', 'generator/NewCharacterRow'], function(CharacterRow, NewCharacterRow) {
   var CharacterList = React.createClass({
     propTypes: {
       characters: React.PropTypes.arrayOf(React.PropTypes.object)

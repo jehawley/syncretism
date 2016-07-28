@@ -1,4 +1,9 @@
-require(['components/compiled/App'], function(App) {
+require.config({
+  paths: {
+    generator: './components/compiled/generator'
+  }
+});
+require(['generator/App'], function(App) {
   var xhr = new XMLHttpRequest();
   var propsJson; 
   //xhr.open('GET', '/jsonStatic');

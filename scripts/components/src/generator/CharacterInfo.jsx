@@ -1,4 +1,4 @@
-define(['components/compiled/SaveButton'], function(SaveButton) {
+define(['generator/SaveButton'], function(SaveButton) {
   var CharacterInfo = React.createClass({
     updateCharacterName: function(event) {
       this.props.updateCharacterName(event.target.value);

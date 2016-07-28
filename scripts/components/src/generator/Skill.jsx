@@ -1,4 +1,4 @@
-define(['components/compiled/SkillBuySection', 'components/compiled/Expander'], function(SkillBuySection, Expander) {
+define(['generator/SkillBuySection', 'generator/Expander'], function(SkillBuySection, Expander) {
   var Skill = React.createClass({
     getInitialState: function() {
       return ({

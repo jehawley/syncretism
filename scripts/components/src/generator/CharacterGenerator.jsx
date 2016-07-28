@@ -1,4 +1,4 @@
-define(['components/compiled/CharacterInfo', 'components/compiled/CharacterSkills'], function(CharacterInfo, CharacterSkills) {
+define(['generator/CharacterInfo', 'generator/CharacterSkills'], function(CharacterInfo, CharacterSkills) {
   var CharacterGenerator = React.createClass({
     propTypes: {
       characterId: React.PropTypes.number,

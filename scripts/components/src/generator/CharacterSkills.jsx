@@ -1,4 +1,4 @@
-define(['components/compiled/HeaderGroup'], function(HeaderGroup) {
+define(['generator/HeaderGroup'], function(HeaderGroup) {
   var CharacterSkills = React.createClass({
     render: function() {
       var headerGroups = Object.keys(this.props.headers).reduce(function(groups, headerId) {
