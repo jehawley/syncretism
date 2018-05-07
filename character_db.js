@@ -1,5 +1,6 @@
 var character_queries = require('./character_queries');
 
+// TODO(jhawley): Prepared statement names should be globally unique somehow
 var characterDb = {
   loadCharactersForPlayer: function(db, player_id) {
     return db.any({

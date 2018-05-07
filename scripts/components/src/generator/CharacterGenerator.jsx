@@ -71,7 +71,6 @@ define(['generator/CharacterInfo', 'generator/CharacterSkills'], function(Charac
     },
   
     // TODO(jhawley): Can I clean this up at all?
-    // TODO(jhawley): Broken?
     generateBuySkillCallback: function(skillId, purchaseType) {
       return function(newLevel) {
         this.setState(function (previousState, currentProps) {
@@ -182,6 +181,7 @@ define(['generator/CharacterInfo', 'generator/CharacterSkills'], function(Charac
           skillData[skillId] = {
             "name": skill.name,
             "cost": skill.cost,
+            "rank": skill.rank,
             "description": skill.description,
             "purchased": this.state.purchasedSkills[skillId] || {},
             "canBuy": this.state.purchasedHeaders[headerId] ? true : false,

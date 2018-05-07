@@ -1,4 +1,4 @@
-SELECT s.header_id, s.id, s.name, s.description, sc.type AS cost_type, sc.params AS cost_params
+SELECT s.header_id, s.id, s.name, s.rank, s.description, sc.type AS cost_type, sc.params AS cost_params
 FROM skill s
   JOIN header_visibility hv ON hv.header_id = s.header_id
   JOIN skill_cost sc ON sc.skill_id = s.id 

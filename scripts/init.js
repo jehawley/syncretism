@@ -6,7 +6,6 @@ require.config({
 require(['generator/App'], function(App) {
   var xhr = new XMLHttpRequest();
   var propsJson; 
-  //xhr.open('GET', '/jsonStatic');
   xhr.open('GET', '/json?characterId=1');
   xhr.onload = function() {
     if (xhr.status === 200) {

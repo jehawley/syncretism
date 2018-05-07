@@ -110,6 +110,7 @@ var characterGenerator = {
             if (!skillCollection[skill.id]) {
               skillCollection[skill.id] = {
                 name: skill.name,
+                rank: skill.rank,
                 description: skill.description,
                 cost: {},
                 header_id: skill.header_id

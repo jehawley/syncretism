@@ -23,7 +23,9 @@ CREATE TABLE IF NOT EXISTS skill (
   header_id    int NOT NULL REFERENCES header(id),
   name         text NOT NULL,
   description  text NOT NULL, 
-  UNIQUE (header_id, name)
+  rank         int NOT NULL,
+  UNIQUE (header_id, name),
+  UNIQUE (header_id, rank)
 );
 
 CREATE TABLE IF NOT EXISTS header_prereq (

@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 
 // TODO(jhawley): Move this to correct file
 var character_generator = require('./character_generator.js');
+var generator_editor = require('./generator_editor.js');
 
 function main() {
   // Server init
@@ -33,6 +34,8 @@ function main() {
   app.use(express.static('style'));
   app.use(express.static('scripts'));
   app.use(express.static('scripts/components/compiled'));
+
+  // Character Generator
 
   app.get('/json', (req, res) => {
     character_generator.loadInitialGeneratorState(req.query.characterId)
@@ -68,6 +71,38 @@ function main() {
       res.end(JSON.stringify({success: false, unexpected: true}));
     });
   }); 
+
+
+  // Generator Editor
+
+  app.get('/loadEditable/characters', bodyParser.json(), (req, res) => {
+    generator_editor.loadCharacters()
+    .then(data =>{
+      res.writeHead(200, {'Content-Type': 'application/json'});
+      res.end(JSON.stringify(data));
+    })
+    .catch(error => {
+      // TODO(jhawley): Replace this with a better error
+      console.log(error);
+      res.writeHead(500);
+      res.end('Fail!');
+    })
+  });
+
+  app.get('/loadEditable/headers', bodyParser.json(), (req, res) => {
+    generator_editor.loadHeaders()
+    .then(data =>{
+      res.writeHead(200, {'Content-Type': 'application/json'});
+      res.end(JSON.stringify(data));
+    })
+    .catch(error => {
+      // TODO(jhawley): Replace this with a better error
+      console.log(error);
+      res.writeHead(500);
+      res.end('Fail!');
+    })
+
+  });
   
   app.post('/login', (req, res) => {
     // TODO(jhawley): Extract post request params?
